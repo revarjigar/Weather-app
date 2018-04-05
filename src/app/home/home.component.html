@@ -1,0 +1,29 @@
+<div class="rotating container center-content" data-loader>
+  <span class="spinner rotate"></span>
+</div>
+
+<div class="container" *ngIf="entireWeatherObject?.item.condition.temp">
+  <div class="color_white black_border">
+    <h1 class="center-content text-center">
+    <i class="color_white black_border" data-icon></i>
+    <ng-container *ngClass="iconApplier(entireWeatherObject?.item.condition.text,'[data-icon]',false)"></ng-container>
+    &nbsp;{{entireWeatherObject?.item.condition.temp}}˚{{entireWeatherObject?.units.temperature}} {{entireWeatherObject?.item.condition.text}}
+    </h1>
+  </div>
+  <br>
+  <br>
+  <ul class="forecast">
+    <li *ngFor="let temperature of forecastObject | slice:0:5; let i = index">
+      <i [attr.data-icon]=i></i>
+      <h2 class="center-content color_white black_border margin_top negative_margin_top">{{temperature.day}}</h2>
+      <div class="horizontal_dotted_line"></div>
+      <h1 class="center-content highest_temperature color_white black_border margin_bottom">{{temperature.high}}˚</h1>
+      <h1 class="center-content lowest_temperature black_border margin_bottom margin_top">{{temperature.low}}˚</h1>
+      <ng-container *ngClass="ulReady()"></ng-container>
+    </li>
+  </ul>
+  <h3 class="center-content text-center color_white black_border">{{entireWeatherObject?.location.city}}
+    <div class="vertical_dotted_line"></div>
+    ˚{{entireWeatherObject?.units.temperature}}
+  </h3>
+</div>

@@ -1,0 +1,31 @@
+ul {
+  list-style-type: none;
+}
+.forecast {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0;
+}
+.forecast li {
+  width: 19%;
+  border: 3px solid white;
+  padding: 30px 10px;
+  border-radius: 20px;
+  border-top-style: initial;
+}
+
+@media screen and (min-width: 700px) {
+  .forecast li {
+    width: 13%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .forecast li {
+    width: 15%;
+  }
+}
+
+.negative_margin_top {
+  margin-top: -30px;
+}

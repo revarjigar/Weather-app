@@ -1,1 +1,97 @@
-/* You can add global styles to this file, and also import other style files */
+/*!* You can add global styles to this file, and also import other style files *!*/
+/*@media (min-width: 320px) {*/
+  /*!* smartphones, iPhone, portrait 480x320 phones *!*/
+/*}*/
+
+/*@media (min-width: 481px) {*/
+  /*!* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. *!*/
+/*}*/
+
+/*@media (min-width: 641px) {*/
+  /*!* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones *!*/
+/*}*/
+
+/*@media (min-width: 961px) {*/
+  /*!* tablet, landscape iPad, lo-res laptops ands desktops *!*/
+/*}*/
+
+/*@media (min-width: 1025px) {*/
+  /*!* big landscape tablets, laptops, and desktops *!*/
+/*}*/
+
+/*@media (min-width: 1281px) {*/
+  /*!* hi-res laptops and desktops *!*/
+/*}*/
+body {
+  background: darkgrey;
+  margin-top: 10%;
+}
+
+a {
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+}
+
+.vertical_dotted_line {
+  border-left: 1px dotted white;
+  height: 30px;
+  margin: 0 15px;
+}
+
+.horizontal_dotted_line {
+  border-bottom: 1px dotted white;
+  margin: 5px 0;
+}
+
+.lowest_temperature {
+  color: dimgrey;
+}
+
+.highest_temperature {
+  color: white;
+}
+
+.color_white {
+  color: white;
+}
+
+.black_border {
+  text-shadow: -0.40px 0 black, 0 0.40px black, 0.40px 0 black, 0 -0.40px black;
+}
+
+.weather_font {
+  font-size: 60px;
+  display: flex !important;
+  justify-content: space-around;
+  position: relative;
+  top: -40px;
+}
+
+.margin_top {
+  margin-top: 0;
+}
+
+.margin_bottom {
+  margin-bottom: 0;
+}
+
+/*Loader*/
+.rotate{
+  -webkit-animation: rotate 1.5s linear infinite;
+  animation: rotate 1.5s linear infinite;
+}
+@-webkit-keyframes rotate{ to{-webkit-transform: rotate(360deg); } }
+@keyframes         rotate{ to{        transform: rotate(360deg); } }
+
+/* SPINNER JUST FOR DEMO */
+.spinner{
+  display:inline-block; width: 50px; height: 50px;
+  border-radius: 50%;
+  box-shadow: inset -2px 0 0 2px white;
+}
+/*Loader*/
