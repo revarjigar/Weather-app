@@ -1,11 +1,9 @@
-ul {
-  list-style-type: none;
-}
 .forecast {
   display: flex;
   justify-content: space-evenly;
   padding: 0;
 }
+
 .forecast li {
   width: 19%;
   border: 3px solid white;

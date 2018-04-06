@@ -1,35 +1,39 @@
 /*!* You can add global styles to this file, and also import other style files *!*/
 /*@media (min-width: 320px) {*/
-  /*!* smartphones, iPhone, portrait 480x320 phones *!*/
+/*!* smartphones, iPhone, portrait 480x320 phones *!*/
 /*}*/
 
 /*@media (min-width: 481px) {*/
-  /*!* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. *!*/
+/*!* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. *!*/
 /*}*/
 
 /*@media (min-width: 641px) {*/
-  /*!* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones *!*/
+/*!* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones *!*/
 /*}*/
 
 /*@media (min-width: 961px) {*/
-  /*!* tablet, landscape iPad, lo-res laptops ands desktops *!*/
+/*!* tablet, landscape iPad, lo-res laptops ands desktops *!*/
 /*}*/
 
 /*@media (min-width: 1025px) {*/
-  /*!* big landscape tablets, laptops, and desktops *!*/
+/*!* big landscape tablets, laptops, and desktops *!*/
 /*}*/
 
 /*@media (min-width: 1281px) {*/
-  /*!* hi-res laptops and desktops *!*/
+/*!* hi-res laptops and desktops *!*/
 /*}*/
 body {
   background: darkgrey;
-  margin-top: 10%;
+  margin-top: 7%;
 }
 
 a {
   text-decoration: none !important;
   cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
 }
 
 .center-content {
@@ -80,45 +84,35 @@ a {
   margin-bottom: 0;
 }
 
-.tooltip {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black;
-}
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
-  bottom: 100%;
-  left: 50%;
-  margin-left: -60px;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
-
 /*Loader*/
-.rotate{
+.rotate {
   -webkit-animation: rotate 1.5s linear infinite;
   animation: rotate 1.5s linear infinite;
 }
-@-webkit-keyframes rotate{ to{-webkit-transform: rotate(360deg); } }
-@keyframes         rotate{ to{        transform: rotate(360deg); } }
+
+@-webkit-keyframes rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 /* SPINNER JUST FOR DEMO */
-.spinner{
-  display:inline-block; width: 50px; height: 50px;
+.spinner {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   box-shadow: inset -2px 0 0 2px white;
 }
-/*Loader*/
+
+/*#radial-center {*/
+  /*background: #a8c0ff; !* fallback for old browsers *!*/
+  /*background: -webkit-linear-gradient(to right, #a8c0ff, #3f2b96); !* Chrome 10-25, Safari 5.1-6 *!*/
+  /*background: linear-gradient(to right, #a8c0ff, #3f2b96); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+/*}*/

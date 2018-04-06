@@ -3,10 +3,13 @@
 </div>
 
 <div class="container" *ngIf="entireWeatherObject?.item.condition.temp">
+  <h2 style="float:right">
+    <a *ngIf="entireWeatherObject?.units.temperature === 'C'" (click)="getGeolocation('F')">˚F</a>
+    <a *ngIf="entireWeatherObject?.units.temperature === 'F'" (click)="getGeolocation('C')">˚C</a>
+  </h2>
   <div class="color_white black_border">
     <h1 class="center-content text-center">
     <i class="color_white black_border" data-icon></i>
-    <ng-container *ngClass="iconApplier(entireWeatherObject?.item.condition.text,'[data-icon]',false)"></ng-container>
     &nbsp;{{entireWeatherObject?.item.condition.temp}}˚{{entireWeatherObject?.units.temperature}} {{entireWeatherObject?.item.condition.text}}
     </h1>
   </div>
@@ -19,7 +22,6 @@
       <div class="horizontal_dotted_line"></div>
       <h1 class="center-content highest_temperature color_white black_border margin_bottom">{{temperature.high}}˚</h1>
       <h1 class="center-content lowest_temperature black_border margin_bottom margin_top">{{temperature.low}}˚</h1>
-      <ng-container *ngClass="ulReady()"></ng-container>
     </li>
   </ul>
   <h3 class="center-content text-center color_white black_border">{{entireWeatherObject?.location.city}}
@@ -27,3 +29,5 @@
     ˚{{entireWeatherObject?.units.temperature}}
   </h3>
 </div>
+<ng-container *ngClass="ulReady()"></ng-container>
+<ng-container *ngClass="iconApplier(entireWeatherObject?.item.condition.text,'[data-icon]')"></ng-container>

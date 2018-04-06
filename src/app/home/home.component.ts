@@ -20,24 +20,28 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getWeatherService.getRandomBackgroundColor();
+    this.getGeolocation();
+    // this.callToWeatherService('(40.7141667,-74.0063889)', 'F');//for development
+  }
+
+  getGeolocation(temperatureUnit: string = 'C'): void {
     const localGeolocation = localStorage.getItem('geolocation');
     if (!localGeolocation && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         let geolocation = '(' + position.coords.latitude + ',' + position.coords.longitude + ')';
-        this.callToWeatherService(geolocation);
+        this.callToWeatherService(geolocation, temperatureUnit);
         localStorage.setItem('geolocation', geolocation);
       }, () => {
-        this.callToWeatherService('(40.7141667,-74.0063889)');
+        this.callToWeatherService('(40.7141667,-74.0063889)', temperatureUnit = 'F');
       });
     } else {
-      this.callToWeatherService(localGeolocation);
+      this.callToWeatherService(localGeolocation, temperatureUnit);
     }
-
-    // this.callToWeatherService('(40.7141667,-74.0063889)');//for development
   }
 
-  callToWeatherService(geolocation: string): void {
-    this.getWeatherService.getWeather(geolocation, 'C')
+  callToWeatherService(geolocation: string, temperatureUnit: string): void {
+    this.getWeatherService.getWeather(geolocation, temperatureUnit)
       .map(data => {
         return data['query'].results.channel;
       })
@@ -50,10 +54,12 @@ export class HomeComponent implements OnInit {
   }
 
   ulReady(): void {
-    this.forecastObject.map((data, index) => {
-      this.iconApplier(data.text, `[data-icon="${index}"]`, true);
-    });
-    this.removeLoader();
+    if (this.forecastObject) {
+      this.forecastObject.map((data, index) => {
+        this.iconApplier(data.text, `[data-icon="${index}"]`);
+      });
+      this.removeLoader();
+    }
   }
 
   removeLoader(): void {
@@ -63,7 +69,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  iconApplier(text: string, selector: string, isFontWeather: boolean): void {
+  iconApplier(text: string, selector: string): void {
     let iconText = this.getWeatherService.singleWord(text);
     let elementChosen = document.querySelector(selector);
     if (elementChosen) {
@@ -73,8 +79,8 @@ export class HomeComponent implements OnInit {
   }
 
   getDayTime() {
-    let test = parseInt(new Date().toString().split(' ')[4]);
-    if (test > 18) {
+    let time = parseInt(new Date().toString().split(' ')[4]);
+    if (time > 18) {
       return false;
     } else return true;
   }
