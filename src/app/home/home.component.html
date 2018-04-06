@@ -14,7 +14,7 @@
   <br>
   <ul class="forecast">
     <li *ngFor="let temperature of forecastObject | slice:0:5; let i = index">
-      <i [attr.data-icon]=i></i>
+      <i [attr.data-icon]=i class="color_white black_border weather_font" title="{{temperature.text}}"></i>
       <h2 class="center-content color_white black_border margin_top negative_margin_top">{{temperature.day}}</h2>
       <div class="horizontal_dotted_line"></div>
       <h1 class="center-content highest_temperature color_white black_border margin_bottom">{{temperature.high}}˚</h1>

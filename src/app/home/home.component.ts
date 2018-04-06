@@ -20,13 +20,20 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (navigator.geolocation) {
+    const localGeolocation = localStorage.getItem('geolocation');
+    if (!localGeolocation && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        this.callToWeatherService('(' + position.coords.latitude + ',' + position.coords.longitude + ')');
+        let geolocation = '(' + position.coords.latitude + ',' + position.coords.longitude + ')';
+        this.callToWeatherService(geolocation);
+        localStorage.setItem('geolocation', geolocation);
       }, () => {
         this.callToWeatherService('(40.7141667,-74.0063889)');
       });
+    } else {
+      this.callToWeatherService(localGeolocation);
     }
+
+    // this.callToWeatherService('(40.7141667,-74.0063889)');//for development
   }
 
   callToWeatherService(geolocation: string): void {
@@ -60,10 +67,16 @@ export class HomeComponent implements OnInit {
     let iconText = this.getWeatherService.singleWord(text);
     let elementChosen = document.querySelector(selector);
     if (elementChosen) {
-      (isFontWeather) ?
-        elementChosen.setAttribute('class', `color_white black_border weather_font wi wi-day-${iconText}`) :
-        elementChosen.setAttribute('class', `color_white black_border wi wi-day-${iconText}`);
+      (this.getDayTime()) ? elementChosen.classList.add(`wi`, `wi-day-${iconText}`, `wi-${iconText}`) :
+        elementChosen.classList.add(`wi`, `wi-night-${iconText}`, `wi-${iconText}`);
     }
+  }
+
+  getDayTime() {
+    let test = parseInt(new Date().toString().split(' ')[4]);
+    if (test > 18) {
+      return false;
+    } else return true;
   }
 
 }
