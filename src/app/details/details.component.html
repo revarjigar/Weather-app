@@ -1,6 +1,11 @@
 <div class="container">
+  <h2 style="float:right">
+    <a *ngIf="entireWeatherObject?.units.temperature === 'C'" (click)="changeTemperatureUnitDetails('F')">˚F</a>
+    <a *ngIf="entireWeatherObject?.units.temperature === 'F'" (click)="changeTemperatureUnitDetails('C')">˚C</a>
+  </h2>
   <div class="color_white black_border">
     <h1 class="center-content text-center">
+    <i data-icon></i>
     &nbsp;{{entireWeatherObject?.item.title}}
     </h1>
   </div>
@@ -22,10 +27,14 @@
           Humidity: {{entireWeatherObject?.atmosphere.humidity}}</h4>
           <h4>
           <i class="wi wi-barometer detailed_font"></i>
-          Pressure: {{entireWeatherObject?.atmosphere.pressure}}</h4>
+          Pressure: {{entireWeatherObject?.atmosphere.pressure}}
+          {{entireWeatherObject?.units.pressure}}
+          </h4>
           <h4>
           <i class="wi wi-smog detailed_font"></i>
-          Visibility: {{entireWeatherObject?.atmosphere.visibility}}</h4>
+          Visibility: {{entireWeatherObject?.atmosphere.visibility}}
+          {{entireWeatherObject?.units.distance}}
+          </h4>
         </div>
         <div>
           <div class="horizontal_dotted_line"></div>
@@ -34,10 +43,13 @@
           Wind chill: {{entireWeatherObject?.wind.chill}}</h4>
           <h4>
           <i class="wi wi-wind-direction detailed_font"></i>
-          Wind direction: {{entireWeatherObject?.wind.direction}}</h4>
+          Wind direction: {{entireWeatherObject?.wind.direction}}
+          </h4>
           <h4>
            <i class="wi wi-strong-wind detailed_font"></i>
-          Wind speed: {{entireWeatherObject?.wind.speed}}</h4>
+          Wind speed: {{entireWeatherObject?.wind.speed}}
+          {{entireWeatherObject?.units.speed}}
+          </h4>
         </div>
         <div>
           <div class="horizontal_dotted_line"></div>

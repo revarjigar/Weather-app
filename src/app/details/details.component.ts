@@ -35,5 +35,7 @@ export class DetailsComponent implements OnInit {
     this.getWeatherService.iconApplier(text, selector);
   }
 
-
+  changeTemperatureUnitDetails(temperatureUnit: string): void {
+    this.getWeatherService.getGeolocation(temperatureUnit);
+  }
 }
