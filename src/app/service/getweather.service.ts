@@ -40,7 +40,6 @@ export class GetWeatherService implements OnInit {
       .subscribe(weatherData => {
         this.entireWeatherSubject.next(weatherData);
         this.forecastSubject.next(weatherData.item.forecast);
-        debugger;
       });
   }
 
