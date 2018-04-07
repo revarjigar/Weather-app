@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="color_white black_border">
+    <h1 class="center-content text-center">
+    &nbsp;{{entireWeatherObject?.item.title}}
+    </h1>
+  </div>
+  <br>
+  <br>
+  <ul class="forecast center-content text-center color_white black_border">
+    <li style="width: 100%">
+      <h1>
+        <i class="detailed_font" data-icon></i>
+        {{entireWeatherObject?.item.condition.temp}}˚
+        {{entireWeatherObject?.units.temperature}}
+        {{entireWeatherObject?.item.condition.text}}
+      </h1>
+      <div class="detailed_forecast">
+        <div>
+          <div class="horizontal_dotted_line"></div>
+          <h4>
+           <i class="wi wi-humidity detailed_font"></i>
+          Humidity: {{entireWeatherObject?.atmosphere.humidity}}</h4>
+          <h4>
+          <i class="wi wi-barometer detailed_font"></i>
+          Pressure: {{entireWeatherObject?.atmosphere.pressure}}</h4>
+          <h4>
+          <i class="wi wi-smog detailed_font"></i>
+          Visibility: {{entireWeatherObject?.atmosphere.visibility}}</h4>
+        </div>
+        <div>
+          <div class="horizontal_dotted_line"></div>
+          <h4>
+          <i class="wi wi-snowflake-cold detailed_font"></i>
+          Wind chill: {{entireWeatherObject?.wind.chill}}</h4>
+          <h4>
+          <i class="wi wi-wind-direction detailed_font"></i>
+          Wind direction: {{entireWeatherObject?.wind.direction}}</h4>
+          <h4>
+           <i class="wi wi-strong-wind detailed_font"></i>
+          Wind speed: {{entireWeatherObject?.wind.speed}}</h4>
+        </div>
+        <div>
+          <div class="horizontal_dotted_line"></div>
+          <h4>
+            <i class="wi wi-sunrise detailed_font"></i>
+            Sunrise: {{entireWeatherObject?.astronomy.sunrise}}
+          </h4>
+          <h4>
+            <i class="wi wi-sunset detailed_font"></i>
+            Sunset: {{entireWeatherObject?.astronomy.sunset}}
+          </h4>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <!--ul class="forecast center-content text-center">
+    <li>
+      <h1>Entry name for CID</h1>
+      <input id="data-test">
+      <button (click)="test('CID')">SUBMIT</button>
+    </li>
+    <li>
+      <h1>Entry name for Military</h1>
+      <input id="data-test">
+      <button (click)="test('Military')">SUBMIT</button>
+    </li>
+    <li>
+      <h1>Entry name for Boarding School</h1>
+      <input id="data-test">
+      <button (click)="test('Boarding School')">SUBMIT</button>
+    </li>
+    <li>
+      <h1>Entry name for Chotta Suxena</h1>
+      <input id="data-test">
+      <button (click)="test('Chotta Suxena')">SUBMIT</button>
+    </li>
+  </ul-->
+  <h3 class="center-content text-center color_white black_border">
+    <a routerLink="/home">Back</a>
+  </h3>
+</div>
+<ng-container *ngClass="callIconApplierDetails(entireWeatherObject?.item.condition.text,'[data-icon]')"></ng-container>

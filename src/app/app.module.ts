@@ -3,17 +3,16 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
 
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 import {GetWeatherService} from './service/getweather.service';
-import {IconComponent} from './icon/icon.component';
+import {DetailsComponent} from './details/details.component';
 
 const appRoutes: Routes = [
-  {
-    path: 'home', children: [
-    {path: '', component: IconComponent}], component: HomeComponent
-  },
+  {path: 'home', component: HomeComponent},
+  {path: 'details', component: DetailsComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];
@@ -22,7 +21,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    IconComponent
+    DetailsComponent
   ],
   imports: [
     BrowserModule,

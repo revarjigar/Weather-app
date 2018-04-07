@@ -9,9 +9,39 @@ export class GetWeatherService implements OnInit {
   forecastSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(private httpClient: HttpClient) {
+    this.getGeolocation();
   }
 
   ngOnInit() {
+  }
+
+  getGeolocation(temperatureUnit: string = 'C'): void {
+    const localGeolocation = localStorage.getItem('geolocation');
+    if (!localGeolocation && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        let geolocation = '(' + position.coords.latitude + ',' + position.coords.longitude + ')';
+        this.callToWeatherService(geolocation, temperatureUnit);
+        localStorage.setItem('geolocation', geolocation);
+      }, () => {
+        this.callToWeatherService('(40.7141667,-74.0063889)', temperatureUnit = 'F');
+      });
+    } else {
+      this.callToWeatherService(localGeolocation, temperatureUnit);
+    }
+    // this.callToWeatherService('(40.7141667,-74.0063889)', 'F');//for development NYC
+    // this.callToWeatherService('(51.5074, 0.1278)', 'C');//for development London
+  }
+
+  callToWeatherService(geolocation: string, temperatureUnit: string): void {
+    this.getWeather(geolocation, temperatureUnit)
+      .map(data => {
+        return data['query'].results.channel;
+      })
+      .subscribe(weatherData => {
+        this.entireWeatherSubject.next(weatherData);
+        this.forecastSubject.next(weatherData.item.forecast);
+        debugger;
+      });
   }
 
   getWeather(place1: string, format: string) {
@@ -33,7 +63,7 @@ export class GetWeatherService implements OnInit {
     dom.style.background = 'linear-gradient(to right, ' + gradient + ')';
   }
 
-  gradientList() {
+  gradientList(): string {
     var gradient = [
       'rgb(0, 90, 167), rgb(255, 253, 228)',
       'rgb(218, 68, 83), rgb(137, 33, 107)',
@@ -333,4 +363,28 @@ export class GetWeatherService implements OnInit {
     ];
     return gradient[Math.floor(Math.random() * gradient.length)];
   }
+
+  iconApplier(text: string, selector: string): void {
+    let iconText = this.singleWord(text);
+    let elementChosen = document.querySelector(selector);
+    if (elementChosen) {
+      (this.getDayTime()) ? elementChosen.classList.add(`wi`, `wi-day-${iconText}`, `wi-${iconText}`) :
+        elementChosen.classList.add(`wi`, `wi-night-${iconText}`, `wi-${iconText}`);
+    }
+  }
+
+  getDayTime() {
+    let time = parseInt(new Date().toString().split(' ')[4]);
+    if (time > 18) {
+      return false;
+    } else return true;
+  }
+
+  removeLoader(): void {
+    let loader = document.querySelector('[data-loader]');
+    if (loader) {
+      loader.remove();
+    }
+  }
+
 }

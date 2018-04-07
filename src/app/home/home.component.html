@@ -1,11 +1,10 @@
 <div class="rotating container center-content" data-loader>
   <span class="spinner rotate"></span>
 </div>
-
 <div class="container" *ngIf="entireWeatherObject?.item.condition.temp">
   <h2 style="float:right">
-    <a *ngIf="entireWeatherObject?.units.temperature === 'C'" (click)="getGeolocation('F')">˚F</a>
-    <a *ngIf="entireWeatherObject?.units.temperature === 'F'" (click)="getGeolocation('C')">˚C</a>
+    <a *ngIf="entireWeatherObject?.units.temperature === 'C'" (click)="changeTemperatureUnit('F')">˚F</a>
+    <a *ngIf="entireWeatherObject?.units.temperature === 'F'" (click)="changeTemperatureUnit('C')">˚C</a>
   </h2>
   <div class="color_white black_border">
     <h1 class="center-content text-center">
@@ -28,6 +27,9 @@
     <div class="vertical_dotted_line"></div>
     ˚{{entireWeatherObject?.units.temperature}}
   </h3>
+  <h3 class="center-content text-center color_white black_border">
+  <a routerLink="/details">Details</a>
+  </h3>
 </div>
 <ng-container *ngClass="ulReady()"></ng-container>
-<ng-container *ngClass="iconApplier(entireWeatherObject?.item.condition.text,'[data-icon]')"></ng-container>
+<ng-container *ngClass="callIconApplier(entireWeatherObject?.item.condition.text,'[data-icon]')"></ng-container>

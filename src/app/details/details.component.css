@@ -1,0 +1,8 @@
+.detailed_forecast {
+  display: flex;
+  justify-content: space-around;
+}
+
+.detailed_font {
+  font-size: 30px;
+}

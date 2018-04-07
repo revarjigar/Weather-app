@@ -36,6 +36,28 @@ ul {
   list-style-type: none;
 }
 
+.forecast {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0;
+}
+
+.forecast li {
+  width: 19%;
+  border: 3px solid white;
+  padding: 30px 10px;
+  border-radius: 20px;
+  border-top-style: initial;
+}
+
+.weather_font {
+  font-size: 30px;
+  display: flex !important;
+  justify-content: space-around;
+  position: relative;
+  top: -40px;
+}
+
 .center-content {
   display: flex;
   justify-content: center;
@@ -68,16 +90,8 @@ ul {
   text-shadow: -0.40px 0 black, 0 0.40px black, 0.40px 0 black, 0 -0.40px black;
 }
 
-.weather_font {
-  font-size: 60px;
-  display: flex !important;
-  justify-content: space-around;
-  position: relative;
-  top: -40px;
-}
-
 .margin_top {
-  margin-top: 0;
+  margin-top: 5px;
 }
 
 .margin_bottom {
@@ -111,8 +125,16 @@ ul {
   box-shadow: inset -2px 0 0 2px white;
 }
 
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
 /*#radial-center {*/
-  /*background: #a8c0ff; !* fallback for old browsers *!*/
-  /*background: -webkit-linear-gradient(to right, #a8c0ff, #3f2b96); !* Chrome 10-25, Safari 5.1-6 *!*/
-  /*background: linear-gradient(to right, #a8c0ff, #3f2b96); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+/*background: #a8c0ff; !* fallback for old browsers *!*/
+/*background: -webkit-linear-gradient(to right, #a8c0ff, #3f2b96); !* Chrome 10-25, Safari 5.1-6 *!*/
+/*background: linear-gradient(to right, #a8c0ff, #3f2b96); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
 /*}*/
