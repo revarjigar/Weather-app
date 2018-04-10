@@ -27,7 +27,7 @@ export class DetailsComponent implements OnInit {
       });
   }
 
-  test(e){
+  test(e) {
     alert(`Name is submitted for ${e}`);
   }
 
@@ -36,6 +36,7 @@ export class DetailsComponent implements OnInit {
   }
 
   changeTemperatureUnitDetails(temperatureUnit: string): void {
+    localStorage.setItem('geoTemperature', temperatureUnit);
     this.getWeatherService.getGeolocation(temperatureUnit);
   }
 }

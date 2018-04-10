@@ -1,12 +1,14 @@
 import {Injectable, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {isUndefined} from 'util';
 
 @Injectable()
 export class GetWeatherService implements OnInit {
 
   entireWeatherSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   forecastSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  currentCity: string = '';
 
   constructor(private httpClient: HttpClient) {
     this.getGeolocation();
@@ -17,6 +19,7 @@ export class GetWeatherService implements OnInit {
 
   getGeolocation(temperatureUnit: string = 'C'): void {
     const localGeolocation = localStorage.getItem('geolocation');
+    temperatureUnit = localStorage.getItem('geoTemperature') ? localStorage.getItem('geoTemperature') : temperatureUnit;
     if (!localGeolocation && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         let geolocation = '(' + position.coords.latitude + ',' + position.coords.longitude + ')';
@@ -26,8 +29,11 @@ export class GetWeatherService implements OnInit {
         this.callToWeatherService('(40.7141667,-74.0063889)', temperatureUnit = 'F');
       });
     } else {
-      this.callToWeatherService(localGeolocation, temperatureUnit);
+      if (this.currentCity === '') {
+        this.callToWeatherService(localGeolocation, temperatureUnit);
+      } else this.callToWeatherService(this.currentCity, temperatureUnit);
     }
+
     // this.callToWeatherService('(40.7141667,-74.0063889)', 'F');//for development NYC
     // this.callToWeatherService('(51.5074, 0.1278)', 'C');//for development London
   }
@@ -295,7 +301,7 @@ export class GetWeatherService implements OnInit {
       'rgb(75, 108, 183), rgb(24, 40, 72)',
       'rgb(252, 53, 76), rgb(10, 191, 188)',
       'rgb(65, 77, 11), rgb(114, 122, 23)',
-      'rgb(228, 58, 21), rgb(230, 82, 69)',
+      'rgb(8, 8, 211), rgb(230, 82, 69)',
       'rgb(192, 72, 72), rgb(72, 0, 72)',
       'rgb(95, 44, 130), rgb(73, 160, 157)',
       'rgb(236, 111, 102), rgb(243, 161, 131)',

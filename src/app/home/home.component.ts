@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
   }
 
   changeTemperatureUnit(temperatureUnit: string): void {
+    localStorage.setItem('geoTemperature', temperatureUnit);
     this.getWeatherService.getGeolocation(temperatureUnit);
   }
 
@@ -45,7 +46,8 @@ export class HomeComponent implements OnInit {
   }
 
   search(cityForm): void {
-    this.getWeatherService.callToWeatherService(cityForm.value.searchValue, 'C');
+    this.getWeatherService.callToWeatherService(cityForm.value.searchValue, localStorage.getItem('geoTemperature'));
+    this.getWeatherService.currentCity = cityForm.value.searchValue;
   }
 
 }
