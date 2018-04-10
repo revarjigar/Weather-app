@@ -30,6 +30,10 @@
   <h3 class="center-content text-center color_white black_border">
   <a routerLink="/details">Details</a>
   </h3>
-</div>
+    <form name="cityForm" #cityForm="ngForm" (ngSubmit)="search(cityForm)" class="container center-content cityform">
+    <input class="form-control" type="text" name="searchValue" id="searchValue" placeholder="Search Here..." ngModel required>
+      <button class="btn btn-primary my-button" [disabled]="cityForm.form.invalid">Submit</button>
+    </form>
+  </div>
 <ng-container *ngClass="ulReady()"></ng-container>
 <ng-container *ngClass="callIconApplier(entireWeatherObject?.item.condition.text,'[data-icon]')"></ng-container>

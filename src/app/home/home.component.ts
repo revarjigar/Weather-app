@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {GetWeatherService} from '../service/getweather.service';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'app-home',
@@ -44,4 +43,9 @@ export class HomeComponent implements OnInit {
       this.getWeatherService.iconApplier(text, selector);
     }
   }
+
+  search(cityForm): void {
+    this.getWeatherService.callToWeatherService(cityForm.value.searchValue, 'C');
+  }
+
 }

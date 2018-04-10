@@ -40,11 +40,13 @@ export class GetWeatherService implements OnInit {
       .subscribe(weatherData => {
         this.entireWeatherSubject.next(weatherData);
         this.forecastSubject.next(weatherData.item.forecast);
+      }, (err) => {
+        alert(`Cannot find ${geolocation}!`);
       });
   }
 
-  getWeather(place1: string, format: string) {
-    const locationQuery = `select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="${place1}") and u="${format}"`;
+  getWeather(place: string, format: string) {
+    const locationQuery = `select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="${place}") and u="${format}"`;
     const locationUrl = 'http://query.yahooapis.com/v1/public/yql?q=' + decodeURI(locationQuery) + '&format=json&env=store://datatables.org/alltableswithkeys';
     return this.httpClient.get(locationUrl);
   }

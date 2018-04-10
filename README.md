@@ -1,5 +1,13 @@
 # MyWeatherApp
 
+This project uses 
+- Yahoo! weather API
+- Angular 5
+- RxJs
+- TypeScript
+- HTML 5 
+- CSS 3 
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
 ## Development server
