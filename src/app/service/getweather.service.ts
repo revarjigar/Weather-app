@@ -380,6 +380,7 @@ export class GetWeatherService implements OnInit {
     }
   }
 
+  // just some bullshit
   getDayTime() {
     let time = parseInt(new Date().toString().split(' ')[4]);
     if (time > 18) {
